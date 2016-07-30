@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class AppMathActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button buttonadd, buttontimes, buttondivide;
+    private Button buttonadd, buttonminus, buttontimes, buttondivide;
     private TextView resultLabel;
     private EditText firstNumber, secondNumber;
 
@@ -22,12 +22,14 @@ public class AppMathActivity extends AppCompatActivity implements View.OnClickLi
 
     private void init() {
         buttonadd = (Button) findViewById(R.id.buttonadd);
+        buttonminus = (Button) findViewById(R.id.buttonminus);
         buttontimes = (Button) findViewById(R.id.buttontimes);
         buttondivide = (Button) findViewById(R.id.buttondivide);
         resultLabel = (TextView) findViewById(R.id.resultLabel);
         firstNumber = (EditText) findViewById(R.id.firstNumber);
         secondNumber = (EditText) findViewById(R.id.secondNumber);
         buttonadd.setOnClickListener(this);
+        buttonminus.setOnClickListener(this);
         buttontimes.setOnClickListener(this);
         buttondivide.setOnClickListener(this);
     }
@@ -37,17 +39,20 @@ public class AppMathActivity extends AppCompatActivity implements View.OnClickLi
         if (firstNumber.getText().toString().matches("") || secondNumber.getText().toString().matches("")) {
             return;
         }
-        Integer firstN = Integer.parseInt(firstNumber.getText().toString());
-        Integer secondN = Integer.parseInt(secondNumber.getText().toString());
+        Double firstN = Double.parseDouble(firstNumber.getText().toString());
+        Double secondN = Double.parseDouble(secondNumber.getText().toString());
         switch (view.getId()) {
             case R.id.buttonadd:
                 resultLabel.setText(String.valueOf(firstN + secondN));
                 break;
+            case R.id.buttonminus:
+                resultLabel.setText(String.valueOf(firstN - secondN));
+                break;
             case R.id.buttontimes:
-                resultLabel.setText(String.valueOf(firstN + secondN));
+                resultLabel.setText(String.valueOf(firstN * secondN));
                 break;
             case R.id.buttondivide:
-                resultLabel.setText(String.valueOf(firstN + secondN));
+                resultLabel.setText(String.valueOf(firstN / secondN));
                 break;
             default:
                 break;
